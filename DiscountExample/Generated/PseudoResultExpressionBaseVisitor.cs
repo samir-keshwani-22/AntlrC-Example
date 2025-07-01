@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from Grammar/QueryGrammar.g4 by ANTLR 4.13.1
+// Generated from Grammar/PseudoResultExpression.g4 by ANTLR 4.13.1
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -25,7 +25,7 @@ using IToken = Antlr4.Runtime.IToken;
 using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 
 /// <summary>
-/// This class provides an empty implementation of <see cref="IQueryGrammarVisitor{Result}"/>,
+/// This class provides an empty implementation of <see cref="IPseudoResultExpressionVisitor{Result}"/>,
 /// which can be extended to create a visitor which only needs to handle a subset
 /// of the available methods.
 /// </summary>
@@ -33,9 +33,9 @@ using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.13.1")]
 [System.Diagnostics.DebuggerNonUserCode]
 [System.CLSCompliant(false)]
-public partial class QueryGrammarBaseVisitor<Result> : AbstractParseTreeVisitor<Result>, IQueryGrammarVisitor<Result> {
+public partial class PseudoResultExpressionBaseVisitor<Result> : AbstractParseTreeVisitor<Result>, IPseudoResultExpressionVisitor<Result> {
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="QueryGrammarParser.query"/>.
+	/// Visit a parse tree produced by <see cref="PseudoResultExpressionParser.start"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -43,9 +43,9 @@ public partial class QueryGrammarBaseVisitor<Result> : AbstractParseTreeVisitor<
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitQuery([NotNull] QueryGrammarParser.QueryContext context) { return VisitChildren(context); }
+	public virtual Result VisitStart([NotNull] PseudoResultExpressionParser.StartContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="QueryGrammarParser.agg_expr_list"/>.
+	/// Visit a parse tree produced by <see cref="PseudoResultExpressionParser.expression"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -53,9 +53,9 @@ public partial class QueryGrammarBaseVisitor<Result> : AbstractParseTreeVisitor<
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitAgg_expr_list([NotNull] QueryGrammarParser.Agg_expr_listContext context) { return VisitChildren(context); }
+	public virtual Result VisitExpression([NotNull] PseudoResultExpressionParser.ExpressionContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="QueryGrammarParser.agg_expr"/>.
+	/// Visit a parse tree produced by <see cref="PseudoResultExpressionParser.term"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -63,9 +63,9 @@ public partial class QueryGrammarBaseVisitor<Result> : AbstractParseTreeVisitor<
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitAgg_expr([NotNull] QueryGrammarParser.Agg_exprContext context) { return VisitChildren(context); }
+	public virtual Result VisitTerm([NotNull] PseudoResultExpressionParser.TermContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="QueryGrammarParser.time_related"/>.
+	/// Visit a parse tree produced by <see cref="PseudoResultExpressionParser.math_expression"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -73,9 +73,9 @@ public partial class QueryGrammarBaseVisitor<Result> : AbstractParseTreeVisitor<
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitTime_related([NotNull] QueryGrammarParser.Time_relatedContext context) { return VisitChildren(context); }
+	public virtual Result VisitMath_expression([NotNull] PseudoResultExpressionParser.Math_expressionContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="QueryGrammarParser.offset"/>.
+	/// Visit a parse tree produced by <see cref="PseudoResultExpressionParser.math_term"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -83,9 +83,9 @@ public partial class QueryGrammarBaseVisitor<Result> : AbstractParseTreeVisitor<
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitOffset([NotNull] QueryGrammarParser.OffsetContext context) { return VisitChildren(context); }
+	public virtual Result VisitMath_term([NotNull] PseudoResultExpressionParser.Math_termContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="QueryGrammarParser.where_expr"/>.
+	/// Visit a parse tree produced by <see cref="PseudoResultExpressionParser.operator"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -93,9 +93,9 @@ public partial class QueryGrammarBaseVisitor<Result> : AbstractParseTreeVisitor<
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitWhere_expr([NotNull] QueryGrammarParser.Where_exprContext context) { return VisitChildren(context); }
+	public virtual Result VisitOperator([NotNull] PseudoResultExpressionParser.OperatorContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="QueryGrammarParser.account_expr"/>.
+	/// Visit a parse tree produced by <see cref="PseudoResultExpressionParser.logical_operator"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -103,9 +103,9 @@ public partial class QueryGrammarBaseVisitor<Result> : AbstractParseTreeVisitor<
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitAccount_expr([NotNull] QueryGrammarParser.Account_exprContext context) { return VisitChildren(context); }
+	public virtual Result VisitLogical_operator([NotNull] PseudoResultExpressionParser.Logical_operatorContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="QueryGrammarParser.expression"/>.
+	/// Visit a parse tree produced by <see cref="PseudoResultExpressionParser.math_operator"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -113,5 +113,5 @@ public partial class QueryGrammarBaseVisitor<Result> : AbstractParseTreeVisitor<
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitExpression([NotNull] QueryGrammarParser.ExpressionContext context) { return VisitChildren(context); }
+	public virtual Result VisitMath_operator([NotNull] PseudoResultExpressionParser.Math_operatorContext context) { return VisitChildren(context); }
 }

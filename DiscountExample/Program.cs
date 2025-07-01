@@ -29,53 +29,54 @@ class Program
         // }
 
         var inputs = new List<string>{
-                "QUERY COUNT(*)\nFROM DATA\nWHERE expression",
-                "QUERY COUNT(*)\nFROM DATA\nWHERE #{account} is {source} AND expression",
-                "QUERY COUNT(*)\nFROM DATA\nWHERE #{account} is {dest} AND expression",
+                // "QUERY COUNT(*)\nFROM DATA\nWHERE expression",
+                // "QUERY COUNT(*)\nFROM DATA\nWHERE #{account} is {source} AND expression",
+                // "QUERY COUNT(*)\nFROM DATA\nWHERE #{account} is {dest} AND expression",
 
-                "QUERY COUNT({amount})\nFROM DATA\nPAST 7 day FROM transaction date",
+                // "QUERY COUNT({amount})\nFROM DATA\nPAST 7 day FROM transaction date",
 
-                "QUERY COUNT({amount})\nFROM DATA\nPAST 7 day FROM transaction date\nWHERE expression",
-                "QUERY COUNT({amount})\nFROM DATA\nPAST 7 day FROM transaction date\nWHERE #{account} is {source} AND expression",
-                "QUERY COUNT({amount})\nFROM DATA\nPAST 7 day FROM transaction date\nWHERE #{account} is {dest} AND expression",
+                // "QUERY COUNT({amount})\nFROM DATA\nPAST 7 day FROM transaction date\nWHERE expression",
+                // "QUERY COUNT({amount})\nFROM DATA\nPAST 7 day FROM transaction date\nWHERE #{account} is {source} AND expression",
+                // "QUERY COUNT({amount})\nFROM DATA\nPAST 7 day FROM transaction date\nWHERE #{account} is {dest} AND expression",
 
-                "QUERY COUNT({amount}) FROM DATA PAST 7 day FROM 2 hour before transaction date",
+                // "QUERY COUNT({amount}) FROM DATA PAST 7 day FROM 2 hour before transaction date",
 
-                "QUERY COUNT({amount})\nFROM DATA\nPAST 7 day FROM 2 hour before transaction date\nWHERE expression",
-                "QUERY COUNT({amount})\nFROM DATA\nPAST 7 day FROM 2 hour before transaction date\nWHERE #{account} is {source} AND expression",
-                "QUERY COUNT({amount})\nFROM DATA\nPAST 7 day FROM 2 hour before transaction date\nWHERE #{account} is {dest} AND expression",
+                // "QUERY COUNT({amount})\nFROM DATA\nPAST 7 day FROM 2 hour before transaction date\nWHERE expression",
+                // "QUERY COUNT({amount})\nFROM DATA\nPAST 7 day FROM 2 hour before transaction date\nWHERE #{account} is {source} AND expression",
+                // "QUERY COUNT({amount})\nFROM DATA\nPAST 7 day FROM 2 hour before transaction date\nWHERE #{account} is {dest} AND expression",
 
-                "QUERY SUM({amount})\nFROM DATA\nPAST 7 day FROM transaction date",
+                // "QUERY SUM({amount})\nFROM DATA\nPAST 7 day FROM transaction date",
 
-                "QUERY SUM({amount})\nFROM DATA\nPAST 7 day FROM transaction date\nWHERE expression",
-                "QUERY SUM({amount})\nFROM DATA\nPAST 7 day FROM transaction date\nWHERE #{account} is {source} AND expression",
-                "QUERY SUM({amount})\nFROM DATA\nPAST 7 day FROM transaction date\nWHERE #{account} is {dest} AND expression",
+                // "QUERY SUM({amount})\nFROM DATA\nPAST 7 day FROM transaction date\nWHERE expression",
+                // "QUERY SUM({amount})\nFROM DATA\nPAST 7 day FROM transaction date\nWHERE #{account} is {source} AND expression",
+                // "QUERY SUM({amount})\nFROM DATA\nPAST 7 day FROM transaction date\nWHERE #{account} is {dest} AND expression",
 
-                "QUERY SUM({amount})\nFROM DATA\nPAST 7 day FROM 2 hour before transaction date",
-                "QUERY SUM({amount})\nFROM DATA\nPAST 7 day FROM 2 hour before transaction date\n WHERE expression",
-                "QUERY SUM({amount})\nFROM DATA\nPAST 7 day FROM 2 hour before transaction date\nWHERE #{account} is {source} AND expression",
-                "QUERY SUM({amount})\nFROM DATA\nPAST 7 day FROM 2 hour before transaction date\nWHERE #{account} is {dest} AND expression",
+                // "QUERY SUM({amount})\nFROM DATA\nPAST 7 day FROM 2 hour before transaction date",
+                // "QUERY SUM({amount})\nFROM DATA\nPAST 7 day FROM 2 hour before transaction date\n WHERE expression",
+                // "QUERY SUM({amount})\nFROM DATA\nPAST 7 day FROM 2 hour before transaction date\nWHERE #{account} is {source} AND expression",
+                // "QUERY SUM({amount})\nFROM DATA\nPAST 7 day FROM 2 hour before transaction date\nWHERE #{account} is {dest} AND expression",
 
-                "QUERY COUNT({amount}), SUM({amount})\nFROM DATA\nPAST 7 day FROM transaction date",
+                // "QUERY COUNT({amount}), SUM({amount})\nFROM DATA\nPAST 7 day FROM transaction date",
 
-                "QUERY COUNT({amount}), SUM({amount})\nFROM DATA\nPAST 7 day FROM transaction date\nWHERE expression",
-                "QUERY COUNT({amount}), SUM({amount})\nFROM DATA\nPAST 7 day FROM transaction date\nWHERE #{account} is {source} AND expression",
-                "QUERY COUNT({amount}), SUM({amount})\nFROM DATA\nPAST 7 day FROM transaction date\nWHERE #{account} is {dest} AND expression",
+                // "QUERY COUNT({amount}), SUM({amount})\nFROM DATA\nPAST 7 day FROM transaction date\nWHERE expression",
+                // "QUERY COUNT({amount}), SUM({amount})\nFROM DATA\nPAST 7 day FROM transaction date\nWHERE #{account} is {source} AND expression",
+                // "QUERY COUNT({amount}), SUM({amount})\nFROM DATA\nPAST 7 day FROM transaction date\nWHERE #{account} is {dest} AND expression",
 
-                "QUERY COUNT({amount}), SUM({amount})\nFROM DATA\nPAST 7 day FROM 2 hour before transaction date",
+                // "QUERY COUNT({amount}), SUM({amount})\nFROM DATA\nPAST 7 day FROM 2 hour before transaction date",
 
-                "QUERY COUNT({amount}), SUM({amount})\nFROM DATA\nPAST 7 day FROM 2 hour before transaction date\n WHERE expression",
-                "QUERY COUNT({amount}), SUM({amount})\nFROM DATA\nPAST 7 day FROM 2 hour before transaction date\nWHERE #{account} is {source} AND expression",
-                "QUERY COUNT({amount}), SUM({amount})\nFROM DATA\nPAST 7 day FROM 2 hour before transaction date\nWHERE #{account} is {dest} AND expression"
-        }; 
+                // "QUERY COUNT({amount}), SUM({amount})\nFROM DATA\nPAST 7 day FROM 2 hour before transaction date\n WHERE expression",
+                // "QUERY COUNT({amount}), SUM({amount})\nFROM DATA\nPAST 7 day FROM 2 hour before transaction date\nWHERE #{account} is {source} AND expression",
+                // "QUERY COUNT({amount}), SUM({amount})\nFROM DATA\nPAST 7 day FROM 2 hour before transaction date\nWHERE #{account} is {dest} AND expression"
+                "QUERY COUNT({amount}) FROM DATA WHERE #{account} = {source}"
+        };
 
         int i = 1;
         foreach (var input in inputs)
         {
             var inputStream = new AntlrInputStream(input);
-            var lexer = new QueryGrammarLexer(inputStream);
+            var lexer = new PseudoQueryExpressionLexer(inputStream);
             var tokenStream = new CommonTokenStream(lexer);
-            var parser = new QueryGrammarParser(tokenStream);
+            var parser = new PseudoQueryExpressionParser(tokenStream);
 
             var errorListener = new ErrorListener();
             parser.RemoveErrorListeners();
@@ -92,7 +93,7 @@ class Program
             }
             else
             {
-                Console.WriteLine("VALID input."); 
+                Console.WriteLine("VALID input.");
                 Console.WriteLine(tree.ToStringTree(parser));
             }
             Console.WriteLine();

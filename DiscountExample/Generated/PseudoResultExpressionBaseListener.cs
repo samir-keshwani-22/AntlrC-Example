@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from Grammar/QueryGrammar.g4 by ANTLR 4.13.1
+// Generated from Grammar/PseudoResultExpression.g4 by ANTLR 4.13.1
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -27,110 +27,110 @@ using IToken = Antlr4.Runtime.IToken;
 using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 
 /// <summary>
-/// This class provides an empty implementation of <see cref="IQueryGrammarListener"/>,
+/// This class provides an empty implementation of <see cref="IPseudoResultExpressionListener"/>,
 /// which can be extended to create a listener which only needs to handle a subset
 /// of the available methods.
 /// </summary>
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.13.1")]
 [System.Diagnostics.DebuggerNonUserCode]
 [System.CLSCompliant(false)]
-public partial class QueryGrammarBaseListener : IQueryGrammarListener {
+public partial class PseudoResultExpressionBaseListener : IPseudoResultExpressionListener {
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="QueryGrammarParser.query"/>.
+	/// Enter a parse tree produced by <see cref="PseudoResultExpressionParser.start"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterQuery([NotNull] QueryGrammarParser.QueryContext context) { }
+	public virtual void EnterStart([NotNull] PseudoResultExpressionParser.StartContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="QueryGrammarParser.query"/>.
+	/// Exit a parse tree produced by <see cref="PseudoResultExpressionParser.start"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitQuery([NotNull] QueryGrammarParser.QueryContext context) { }
+	public virtual void ExitStart([NotNull] PseudoResultExpressionParser.StartContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="QueryGrammarParser.agg_expr_list"/>.
+	/// Enter a parse tree produced by <see cref="PseudoResultExpressionParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterAgg_expr_list([NotNull] QueryGrammarParser.Agg_expr_listContext context) { }
+	public virtual void EnterExpression([NotNull] PseudoResultExpressionParser.ExpressionContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="QueryGrammarParser.agg_expr_list"/>.
+	/// Exit a parse tree produced by <see cref="PseudoResultExpressionParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitAgg_expr_list([NotNull] QueryGrammarParser.Agg_expr_listContext context) { }
+	public virtual void ExitExpression([NotNull] PseudoResultExpressionParser.ExpressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="QueryGrammarParser.agg_expr"/>.
+	/// Enter a parse tree produced by <see cref="PseudoResultExpressionParser.term"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterAgg_expr([NotNull] QueryGrammarParser.Agg_exprContext context) { }
+	public virtual void EnterTerm([NotNull] PseudoResultExpressionParser.TermContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="QueryGrammarParser.agg_expr"/>.
+	/// Exit a parse tree produced by <see cref="PseudoResultExpressionParser.term"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitAgg_expr([NotNull] QueryGrammarParser.Agg_exprContext context) { }
+	public virtual void ExitTerm([NotNull] PseudoResultExpressionParser.TermContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="QueryGrammarParser.time_related"/>.
+	/// Enter a parse tree produced by <see cref="PseudoResultExpressionParser.math_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterTime_related([NotNull] QueryGrammarParser.Time_relatedContext context) { }
+	public virtual void EnterMath_expression([NotNull] PseudoResultExpressionParser.Math_expressionContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="QueryGrammarParser.time_related"/>.
+	/// Exit a parse tree produced by <see cref="PseudoResultExpressionParser.math_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitTime_related([NotNull] QueryGrammarParser.Time_relatedContext context) { }
+	public virtual void ExitMath_expression([NotNull] PseudoResultExpressionParser.Math_expressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="QueryGrammarParser.offset"/>.
+	/// Enter a parse tree produced by <see cref="PseudoResultExpressionParser.math_term"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterOffset([NotNull] QueryGrammarParser.OffsetContext context) { }
+	public virtual void EnterMath_term([NotNull] PseudoResultExpressionParser.Math_termContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="QueryGrammarParser.offset"/>.
+	/// Exit a parse tree produced by <see cref="PseudoResultExpressionParser.math_term"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitOffset([NotNull] QueryGrammarParser.OffsetContext context) { }
+	public virtual void ExitMath_term([NotNull] PseudoResultExpressionParser.Math_termContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="QueryGrammarParser.where_expr"/>.
+	/// Enter a parse tree produced by <see cref="PseudoResultExpressionParser.operator"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterWhere_expr([NotNull] QueryGrammarParser.Where_exprContext context) { }
+	public virtual void EnterOperator([NotNull] PseudoResultExpressionParser.OperatorContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="QueryGrammarParser.where_expr"/>.
+	/// Exit a parse tree produced by <see cref="PseudoResultExpressionParser.operator"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitWhere_expr([NotNull] QueryGrammarParser.Where_exprContext context) { }
+	public virtual void ExitOperator([NotNull] PseudoResultExpressionParser.OperatorContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="QueryGrammarParser.account_expr"/>.
+	/// Enter a parse tree produced by <see cref="PseudoResultExpressionParser.logical_operator"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterAccount_expr([NotNull] QueryGrammarParser.Account_exprContext context) { }
+	public virtual void EnterLogical_operator([NotNull] PseudoResultExpressionParser.Logical_operatorContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="QueryGrammarParser.account_expr"/>.
+	/// Exit a parse tree produced by <see cref="PseudoResultExpressionParser.logical_operator"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitAccount_expr([NotNull] QueryGrammarParser.Account_exprContext context) { }
+	public virtual void ExitLogical_operator([NotNull] PseudoResultExpressionParser.Logical_operatorContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="QueryGrammarParser.expression"/>.
+	/// Enter a parse tree produced by <see cref="PseudoResultExpressionParser.math_operator"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterExpression([NotNull] QueryGrammarParser.ExpressionContext context) { }
+	public virtual void EnterMath_operator([NotNull] PseudoResultExpressionParser.Math_operatorContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="QueryGrammarParser.expression"/>.
+	/// Exit a parse tree produced by <see cref="PseudoResultExpressionParser.math_operator"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitExpression([NotNull] QueryGrammarParser.ExpressionContext context) { }
+	public virtual void ExitMath_operator([NotNull] PseudoResultExpressionParser.Math_operatorContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from Grammar/QueryGrammar.g4 by ANTLR 4.13.1
+// Generated from Grammar/PseudoResultExpression.g4 by ANTLR 4.13.1
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -25,58 +25,58 @@ using IToken = Antlr4.Runtime.IToken;
 
 /// <summary>
 /// This interface defines a complete generic visitor for a parse tree produced
-/// by <see cref="QueryGrammarParser"/>.
+/// by <see cref="PseudoResultExpressionParser"/>.
 /// </summary>
 /// <typeparam name="Result">The return type of the visit operation.</typeparam>
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.13.1")]
 [System.CLSCompliant(false)]
-public interface IQueryGrammarVisitor<Result> : IParseTreeVisitor<Result> {
+public interface IPseudoResultExpressionVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="QueryGrammarParser.query"/>.
+	/// Visit a parse tree produced by <see cref="PseudoResultExpressionParser.start"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitQuery([NotNull] QueryGrammarParser.QueryContext context);
+	Result VisitStart([NotNull] PseudoResultExpressionParser.StartContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="QueryGrammarParser.agg_expr_list"/>.
+	/// Visit a parse tree produced by <see cref="PseudoResultExpressionParser.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAgg_expr_list([NotNull] QueryGrammarParser.Agg_expr_listContext context);
+	Result VisitExpression([NotNull] PseudoResultExpressionParser.ExpressionContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="QueryGrammarParser.agg_expr"/>.
+	/// Visit a parse tree produced by <see cref="PseudoResultExpressionParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAgg_expr([NotNull] QueryGrammarParser.Agg_exprContext context);
+	Result VisitTerm([NotNull] PseudoResultExpressionParser.TermContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="QueryGrammarParser.time_related"/>.
+	/// Visit a parse tree produced by <see cref="PseudoResultExpressionParser.math_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitTime_related([NotNull] QueryGrammarParser.Time_relatedContext context);
+	Result VisitMath_expression([NotNull] PseudoResultExpressionParser.Math_expressionContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="QueryGrammarParser.offset"/>.
+	/// Visit a parse tree produced by <see cref="PseudoResultExpressionParser.math_term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitOffset([NotNull] QueryGrammarParser.OffsetContext context);
+	Result VisitMath_term([NotNull] PseudoResultExpressionParser.Math_termContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="QueryGrammarParser.where_expr"/>.
+	/// Visit a parse tree produced by <see cref="PseudoResultExpressionParser.operator"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitWhere_expr([NotNull] QueryGrammarParser.Where_exprContext context);
+	Result VisitOperator([NotNull] PseudoResultExpressionParser.OperatorContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="QueryGrammarParser.account_expr"/>.
+	/// Visit a parse tree produced by <see cref="PseudoResultExpressionParser.logical_operator"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAccount_expr([NotNull] QueryGrammarParser.Account_exprContext context);
+	Result VisitLogical_operator([NotNull] PseudoResultExpressionParser.Logical_operatorContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="QueryGrammarParser.expression"/>.
+	/// Visit a parse tree produced by <see cref="PseudoResultExpressionParser.math_operator"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitExpression([NotNull] QueryGrammarParser.ExpressionContext context);
+	Result VisitMath_operator([NotNull] PseudoResultExpressionParser.Math_operatorContext context);
 }
