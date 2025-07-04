@@ -16,40 +16,42 @@ public class PseudoQueryExpressionParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
-		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24, 
-		T__24=25, T__25=26, T__26=27, STAR=28, DATE=29, IDENTIFIER=30, VALUEIDENTIFIER=31, 
-		EMPTY=32, INT=33, WS=34;
+		QUERY=1, FROM=2, DATA=3, WHERE=4, AND=5, OR=6, IS=7, PAST=8, BEFORE=9, 
+		COUNT=10, SUM=11, IN=12, NOT_IN=13, TRANSACTION_DATE=14, SOURCE_TOKEN=15, 
+		DEST_TOKEN=16, EQ=17, NE=18, GT=19, LT=20, GE=21, LE=22, LPAREN=23, RPAREN=24, 
+		COMMA=25, STAR=26, TIMEUNIT=27, DATE=28, IDENTIFIER=29, VALUEIDENTIFIER=30, 
+		EMPTY=31, INT=32, WS=33, INVALID=34;
 	public static final int
 		RULE_start = 0, RULE_query = 1, RULE_aggregateQuery = 2, RULE_aggregateList = 3, 
-		RULE_aggregate = 4, RULE_timeFilter = 5, RULE_timeReference = 6, RULE_whereClause = 7, 
-		RULE_preExpression = 8, RULE_expression = 9, RULE_term = 10, RULE_field = 11, 
-		RULE_operator = 12, RULE_value = 13, RULE_logical_operator = 14;
+		RULE_aggregate = 4, RULE_aggregateFunction = 5, RULE_timeFilter = 6, RULE_timeReference = 7, 
+		RULE_whereClause = 8, RULE_preExpression = 9, RULE_sourceDestSpecifier = 10, 
+		RULE_expression = 11, RULE_term = 12, RULE_field = 13, RULE_operator = 14, 
+		RULE_value = 15, RULE_logicalOperator = 16;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"start", "query", "aggregateQuery", "aggregateList", "aggregate", "timeFilter", 
-			"timeReference", "whereClause", "preExpression", "expression", "term", 
-			"field", "operator", "value", "logical_operator"
+			"start", "query", "aggregateQuery", "aggregateList", "aggregate", "aggregateFunction", 
+			"timeFilter", "timeReference", "whereClause", "preExpression", "sourceDestSpecifier", 
+			"expression", "term", "field", "operator", "value", "logicalOperator"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'QUERY'", "'FROM'", "'DATA'", "','", "'COUNT'", "'SUM'", "'('", 
-			"')'", "'PAST'", "'day'", "'transaction date'", "'hour'", "'before'", 
-			"'WHERE'", "'is'", "'{source}'", "'{dest}'", "'AND'", "'='", "'!='", 
-			"'>'", "'<'", "'>='", "'<='", "'in'", "'not in'", "'OR'", "'*'"
+			null, "'QUERY'", "'FROM'", "'DATA'", "'WHERE'", "'AND'", "'OR'", "'is'", 
+			"'PAST'", "'before'", "'COUNT'", "'SUM'", "'in'", null, "'transaction date'", 
+			"'{source}'", "'{dest}'", "'='", "'!='", "'>'", "'<'", "'>='", "'<='", 
+			"'('", "')'", "','", "'*'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, null, null, null, null, null, null, null, null, null, null, 
-			null, null, null, null, null, null, null, null, null, null, null, null, 
-			null, null, null, null, "STAR", "DATE", "IDENTIFIER", "VALUEIDENTIFIER", 
-			"EMPTY", "INT", "WS"
+			null, "QUERY", "FROM", "DATA", "WHERE", "AND", "OR", "IS", "PAST", "BEFORE", 
+			"COUNT", "SUM", "IN", "NOT_IN", "TRANSACTION_DATE", "SOURCE_TOKEN", "DEST_TOKEN", 
+			"EQ", "NE", "GT", "LT", "GE", "LE", "LPAREN", "RPAREN", "COMMA", "STAR", 
+			"TIMEUNIT", "DATE", "IDENTIFIER", "VALUEIDENTIFIER", "EMPTY", "INT", 
+			"WS", "INVALID"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -121,9 +123,9 @@ public class PseudoQueryExpressionParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(30);
+			setState(34);
 			query();
-			setState(31);
+			setState(35);
 			match(EOF);
 			}
 		}
@@ -143,6 +145,9 @@ public class PseudoQueryExpressionParser extends Parser {
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
+		public PreExpressionContext preExpression() {
+			return getRuleContext(PreExpressionContext.class,0);
+		}
 		public AggregateQueryContext aggregateQuery() {
 			return getRuleContext(AggregateQueryContext.class,0);
 		}
@@ -156,26 +161,32 @@ public class PseudoQueryExpressionParser extends Parser {
 		QueryContext _localctx = new QueryContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_query);
 		try {
-			setState(35);
+			setState(42);
 			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case T__6:
-			case IDENTIFIER:
+			switch ( getInterpreter().adaptivePredict(_input,0,_ctx) ) {
+			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(33);
+				setState(37);
 				expression();
 				}
 				break;
-			case T__0:
+			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(34);
+				setState(38);
+				preExpression();
+				setState(39);
+				expression();
+				}
+				break;
+			case 3:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(41);
 				aggregateQuery();
 				}
 				break;
-			default:
-				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -191,9 +202,12 @@ public class PseudoQueryExpressionParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class AggregateQueryContext extends ParserRuleContext {
+		public TerminalNode QUERY() { return getToken(PseudoQueryExpressionParser.QUERY, 0); }
 		public AggregateListContext aggregateList() {
 			return getRuleContext(AggregateListContext.class,0);
 		}
+		public TerminalNode FROM() { return getToken(PseudoQueryExpressionParser.FROM, 0); }
+		public TerminalNode DATA() { return getToken(PseudoQueryExpressionParser.DATA, 0); }
 		public TimeFilterContext timeFilter() {
 			return getRuleContext(TimeFilterContext.class,0);
 		}
@@ -213,30 +227,30 @@ public class PseudoQueryExpressionParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(37);
-			match(T__0);
-			setState(38);
+			setState(44);
+			match(QUERY);
+			setState(45);
 			aggregateList();
-			setState(39);
-			match(T__1);
-			setState(40);
-			match(T__2);
-			setState(42);
+			setState(46);
+			match(FROM);
+			setState(47);
+			match(DATA);
+			setState(49);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==T__8) {
+			if (_la==PAST) {
 				{
-				setState(41);
+				setState(48);
 				timeFilter();
 				}
 			}
 
-			setState(45);
+			setState(52);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==T__13) {
+			if (_la==WHERE) {
 				{
-				setState(44);
+				setState(51);
 				whereClause();
 				}
 			}
@@ -262,6 +276,10 @@ public class PseudoQueryExpressionParser extends Parser {
 		public AggregateContext aggregate(int i) {
 			return getRuleContext(AggregateContext.class,i);
 		}
+		public List<TerminalNode> COMMA() { return getTokens(PseudoQueryExpressionParser.COMMA); }
+		public TerminalNode COMMA(int i) {
+			return getToken(PseudoQueryExpressionParser.COMMA, i);
+		}
 		public AggregateListContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -275,21 +293,21 @@ public class PseudoQueryExpressionParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(47);
+			setState(54);
 			aggregate();
-			setState(52);
+			setState(59);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__3) {
+			while (_la==COMMA) {
 				{
 				{
-				setState(48);
-				match(T__3);
-				setState(49);
+				setState(55);
+				match(COMMA);
+				setState(56);
 				aggregate();
 				}
 				}
-				setState(54);
+				setState(61);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -308,6 +326,11 @@ public class PseudoQueryExpressionParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class AggregateContext extends ParserRuleContext {
+		public AggregateFunctionContext aggregateFunction() {
+			return getRuleContext(AggregateFunctionContext.class,0);
+		}
+		public TerminalNode LPAREN() { return getToken(PseudoQueryExpressionParser.LPAREN, 0); }
+		public TerminalNode RPAREN() { return getToken(PseudoQueryExpressionParser.RPAREN, 0); }
 		public TerminalNode VALUEIDENTIFIER() { return getToken(PseudoQueryExpressionParser.VALUEIDENTIFIER, 0); }
 		public TerminalNode STAR() { return getToken(PseudoQueryExpressionParser.STAR, 0); }
 		public AggregateContext(ParserRuleContext parent, int invokingState) {
@@ -323,19 +346,11 @@ public class PseudoQueryExpressionParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(55);
-			_la = _input.LA(1);
-			if ( !(_la==T__4 || _la==T__5) ) {
-			_errHandler.recoverInline(this);
-			}
-			else {
-				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-				_errHandler.reportMatch(this);
-				consume();
-			}
-			setState(56);
-			match(T__6);
-			setState(57);
+			setState(62);
+			aggregateFunction();
+			setState(63);
+			match(LPAREN);
+			setState(64);
 			_la = _input.LA(1);
 			if ( !(_la==STAR || _la==VALUEIDENTIFIER) ) {
 			_errHandler.recoverInline(this);
@@ -345,8 +360,48 @@ public class PseudoQueryExpressionParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(58);
-			match(T__7);
+			setState(65);
+			match(RPAREN);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class AggregateFunctionContext extends ParserRuleContext {
+		public TerminalNode COUNT() { return getToken(PseudoQueryExpressionParser.COUNT, 0); }
+		public TerminalNode SUM() { return getToken(PseudoQueryExpressionParser.SUM, 0); }
+		public AggregateFunctionContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_aggregateFunction; }
+	}
+
+	public final AggregateFunctionContext aggregateFunction() throws RecognitionException {
+		AggregateFunctionContext _localctx = new AggregateFunctionContext(_ctx, getState());
+		enterRule(_localctx, 10, RULE_aggregateFunction);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(67);
+			_la = _input.LA(1);
+			if ( !(_la==COUNT || _la==SUM) ) {
+			_errHandler.recoverInline(this);
+			}
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -362,7 +417,10 @@ public class PseudoQueryExpressionParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class TimeFilterContext extends ParserRuleContext {
+		public TerminalNode PAST() { return getToken(PseudoQueryExpressionParser.PAST, 0); }
 		public TerminalNode INT() { return getToken(PseudoQueryExpressionParser.INT, 0); }
+		public TerminalNode TIMEUNIT() { return getToken(PseudoQueryExpressionParser.TIMEUNIT, 0); }
+		public TerminalNode FROM() { return getToken(PseudoQueryExpressionParser.FROM, 0); }
 		public TimeReferenceContext timeReference() {
 			return getRuleContext(TimeReferenceContext.class,0);
 		}
@@ -374,19 +432,19 @@ public class PseudoQueryExpressionParser extends Parser {
 
 	public final TimeFilterContext timeFilter() throws RecognitionException {
 		TimeFilterContext _localctx = new TimeFilterContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_timeFilter);
+		enterRule(_localctx, 12, RULE_timeFilter);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(60);
-			match(T__8);
-			setState(61);
+			setState(69);
+			match(PAST);
+			setState(70);
 			match(INT);
-			setState(62);
-			match(T__9);
-			setState(63);
-			match(T__1);
-			setState(64);
+			setState(71);
+			match(TIMEUNIT);
+			setState(72);
+			match(FROM);
+			setState(73);
 			timeReference();
 			}
 		}
@@ -403,7 +461,10 @@ public class PseudoQueryExpressionParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class TimeReferenceContext extends ParserRuleContext {
+		public TerminalNode TRANSACTION_DATE() { return getToken(PseudoQueryExpressionParser.TRANSACTION_DATE, 0); }
 		public TerminalNode INT() { return getToken(PseudoQueryExpressionParser.INT, 0); }
+		public TerminalNode TIMEUNIT() { return getToken(PseudoQueryExpressionParser.TIMEUNIT, 0); }
+		public TerminalNode BEFORE() { return getToken(PseudoQueryExpressionParser.BEFORE, 0); }
 		public TimeReferenceContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -412,29 +473,29 @@ public class PseudoQueryExpressionParser extends Parser {
 
 	public final TimeReferenceContext timeReference() throws RecognitionException {
 		TimeReferenceContext _localctx = new TimeReferenceContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_timeReference);
+		enterRule(_localctx, 14, RULE_timeReference);
 		try {
-			setState(71);
+			setState(80);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
-			case T__10:
+			case TRANSACTION_DATE:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(66);
-				match(T__10);
+				setState(75);
+				match(TRANSACTION_DATE);
 				}
 				break;
 			case INT:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(67);
+				setState(76);
 				match(INT);
-				setState(68);
-				match(T__11);
-				setState(69);
-				match(T__12);
-				setState(70);
-				match(T__10);
+				setState(77);
+				match(TIMEUNIT);
+				setState(78);
+				match(BEFORE);
+				setState(79);
+				match(TRANSACTION_DATE);
 				}
 				break;
 			default:
@@ -454,6 +515,7 @@ public class PseudoQueryExpressionParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class WhereClauseContext extends ParserRuleContext {
+		public TerminalNode WHERE() { return getToken(PseudoQueryExpressionParser.WHERE, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
@@ -468,23 +530,23 @@ public class PseudoQueryExpressionParser extends Parser {
 
 	public final WhereClauseContext whereClause() throws RecognitionException {
 		WhereClauseContext _localctx = new WhereClauseContext(_ctx, getState());
-		enterRule(_localctx, 14, RULE_whereClause);
+		enterRule(_localctx, 16, RULE_whereClause);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(73);
-			match(T__13);
-			setState(75);
+			setState(82);
+			match(WHERE);
+			setState(84);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
 			case 1:
 				{
-				setState(74);
+				setState(83);
 				preExpression();
 				}
 				break;
 			}
-			setState(77);
+			setState(86);
 			expression();
 			}
 		}
@@ -502,6 +564,11 @@ public class PseudoQueryExpressionParser extends Parser {
 	@SuppressWarnings("CheckReturnValue")
 	public static class PreExpressionContext extends ParserRuleContext {
 		public TerminalNode IDENTIFIER() { return getToken(PseudoQueryExpressionParser.IDENTIFIER, 0); }
+		public TerminalNode IS() { return getToken(PseudoQueryExpressionParser.IS, 0); }
+		public SourceDestSpecifierContext sourceDestSpecifier() {
+			return getRuleContext(SourceDestSpecifierContext.class,0);
+		}
+		public TerminalNode AND() { return getToken(PseudoQueryExpressionParser.AND, 0); }
 		public PreExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -510,18 +577,51 @@ public class PseudoQueryExpressionParser extends Parser {
 
 	public final PreExpressionContext preExpression() throws RecognitionException {
 		PreExpressionContext _localctx = new PreExpressionContext(_ctx, getState());
-		enterRule(_localctx, 16, RULE_preExpression);
+		enterRule(_localctx, 18, RULE_preExpression);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(88);
+			match(IDENTIFIER);
+			setState(89);
+			match(IS);
+			setState(90);
+			sourceDestSpecifier();
+			setState(91);
+			match(AND);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class SourceDestSpecifierContext extends ParserRuleContext {
+		public TerminalNode SOURCE_TOKEN() { return getToken(PseudoQueryExpressionParser.SOURCE_TOKEN, 0); }
+		public TerminalNode DEST_TOKEN() { return getToken(PseudoQueryExpressionParser.DEST_TOKEN, 0); }
+		public SourceDestSpecifierContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_sourceDestSpecifier; }
+	}
+
+	public final SourceDestSpecifierContext sourceDestSpecifier() throws RecognitionException {
+		SourceDestSpecifierContext _localctx = new SourceDestSpecifierContext(_ctx, getState());
+		enterRule(_localctx, 20, RULE_sourceDestSpecifier);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(79);
-			match(IDENTIFIER);
-			setState(80);
-			match(T__14);
-			setState(81);
+			setState(93);
 			_la = _input.LA(1);
-			if ( !(_la==T__15 || _la==T__16) ) {
+			if ( !(_la==SOURCE_TOKEN || _la==DEST_TOKEN) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -529,8 +629,6 @@ public class PseudoQueryExpressionParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(82);
-			match(T__17);
 			}
 		}
 		catch (RecognitionException re) {
@@ -552,11 +650,11 @@ public class PseudoQueryExpressionParser extends Parser {
 		public TermContext term(int i) {
 			return getRuleContext(TermContext.class,i);
 		}
-		public List<Logical_operatorContext> logical_operator() {
-			return getRuleContexts(Logical_operatorContext.class);
+		public List<LogicalOperatorContext> logicalOperator() {
+			return getRuleContexts(LogicalOperatorContext.class);
 		}
-		public Logical_operatorContext logical_operator(int i) {
-			return getRuleContext(Logical_operatorContext.class,i);
+		public LogicalOperatorContext logicalOperator(int i) {
+			return getRuleContext(LogicalOperatorContext.class,i);
 		}
 		public ExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -566,26 +664,26 @@ public class PseudoQueryExpressionParser extends Parser {
 
 	public final ExpressionContext expression() throws RecognitionException {
 		ExpressionContext _localctx = new ExpressionContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_expression);
+		enterRule(_localctx, 22, RULE_expression);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(84);
+			setState(95);
 			term();
-			setState(90);
+			setState(101);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__17 || _la==T__26) {
+			while (_la==AND || _la==OR) {
 				{
 				{
-				setState(85);
-				logical_operator();
-				setState(86);
+				setState(96);
+				logicalOperator();
+				setState(97);
 				term();
 				}
 				}
-				setState(92);
+				setState(103);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -604,9 +702,11 @@ public class PseudoQueryExpressionParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class TermContext extends ParserRuleContext {
+		public TerminalNode LPAREN() { return getToken(PseudoQueryExpressionParser.LPAREN, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
+		public TerminalNode RPAREN() { return getToken(PseudoQueryExpressionParser.RPAREN, 0); }
 		public FieldContext field() {
 			return getRuleContext(FieldContext.class,0);
 		}
@@ -624,30 +724,30 @@ public class PseudoQueryExpressionParser extends Parser {
 
 	public final TermContext term() throws RecognitionException {
 		TermContext _localctx = new TermContext(_ctx, getState());
-		enterRule(_localctx, 20, RULE_term);
+		enterRule(_localctx, 24, RULE_term);
 		try {
-			setState(101);
+			setState(112);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
-			case T__6:
+			case LPAREN:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(93);
-				match(T__6);
-				setState(94);
+				setState(104);
+				match(LPAREN);
+				setState(105);
 				expression();
-				setState(95);
-				match(T__7);
+				setState(106);
+				match(RPAREN);
 				}
 				break;
 			case IDENTIFIER:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(97);
+				setState(108);
 				field();
-				setState(98);
+				setState(109);
 				operator();
-				setState(99);
+				setState(110);
 				value();
 				}
 				break;
@@ -677,11 +777,11 @@ public class PseudoQueryExpressionParser extends Parser {
 
 	public final FieldContext field() throws RecognitionException {
 		FieldContext _localctx = new FieldContext(_ctx, getState());
-		enterRule(_localctx, 22, RULE_field);
+		enterRule(_localctx, 26, RULE_field);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(103);
+			setState(114);
 			match(IDENTIFIER);
 			}
 		}
@@ -698,6 +798,14 @@ public class PseudoQueryExpressionParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class OperatorContext extends ParserRuleContext {
+		public TerminalNode EQ() { return getToken(PseudoQueryExpressionParser.EQ, 0); }
+		public TerminalNode NE() { return getToken(PseudoQueryExpressionParser.NE, 0); }
+		public TerminalNode GT() { return getToken(PseudoQueryExpressionParser.GT, 0); }
+		public TerminalNode LT() { return getToken(PseudoQueryExpressionParser.LT, 0); }
+		public TerminalNode GE() { return getToken(PseudoQueryExpressionParser.GE, 0); }
+		public TerminalNode LE() { return getToken(PseudoQueryExpressionParser.LE, 0); }
+		public TerminalNode IN() { return getToken(PseudoQueryExpressionParser.IN, 0); }
+		public TerminalNode NOT_IN() { return getToken(PseudoQueryExpressionParser.NOT_IN, 0); }
 		public OperatorContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -706,14 +814,14 @@ public class PseudoQueryExpressionParser extends Parser {
 
 	public final OperatorContext operator() throws RecognitionException {
 		OperatorContext _localctx = new OperatorContext(_ctx, getState());
-		enterRule(_localctx, 24, RULE_operator);
+		enterRule(_localctx, 28, RULE_operator);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(105);
+			setState(116);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 133693440L) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 8269824L) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -747,14 +855,14 @@ public class PseudoQueryExpressionParser extends Parser {
 
 	public final ValueContext value() throws RecognitionException {
 		ValueContext _localctx = new ValueContext(_ctx, getState());
-		enterRule(_localctx, 26, RULE_value);
+		enterRule(_localctx, 30, RULE_value);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(107);
+			setState(118);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 6979321856L) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 3489660928L) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -776,23 +884,25 @@ public class PseudoQueryExpressionParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class Logical_operatorContext extends ParserRuleContext {
-		public Logical_operatorContext(ParserRuleContext parent, int invokingState) {
+	public static class LogicalOperatorContext extends ParserRuleContext {
+		public TerminalNode AND() { return getToken(PseudoQueryExpressionParser.AND, 0); }
+		public TerminalNode OR() { return getToken(PseudoQueryExpressionParser.OR, 0); }
+		public LogicalOperatorContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_logical_operator; }
+		@Override public int getRuleIndex() { return RULE_logicalOperator; }
 	}
 
-	public final Logical_operatorContext logical_operator() throws RecognitionException {
-		Logical_operatorContext _localctx = new Logical_operatorContext(_ctx, getState());
-		enterRule(_localctx, 28, RULE_logical_operator);
+	public final LogicalOperatorContext logicalOperator() throws RecognitionException {
+		LogicalOperatorContext _localctx = new LogicalOperatorContext(_ctx, getState());
+		enterRule(_localctx, 32, RULE_logicalOperator);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(109);
+			setState(120);
 			_la = _input.LA(1);
-			if ( !(_la==T__17 || _la==T__26) ) {
+			if ( !(_la==AND || _la==OR) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -814,66 +924,72 @@ public class PseudoQueryExpressionParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\"p\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0004\u0001\"{\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
 		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002"+
 		"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0002"+
 		"\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0002\u000b\u0007\u000b\u0002"+
-		"\f\u0007\f\u0002\r\u0007\r\u0002\u000e\u0007\u000e\u0001\u0000\u0001\u0000"+
-		"\u0001\u0000\u0001\u0001\u0001\u0001\u0003\u0001$\b\u0001\u0001\u0002"+
-		"\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0003\u0002+\b\u0002"+
-		"\u0001\u0002\u0003\u0002.\b\u0002\u0001\u0003\u0001\u0003\u0001\u0003"+
-		"\u0005\u00033\b\u0003\n\u0003\f\u00036\t\u0003\u0001\u0004\u0001\u0004"+
-		"\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0005\u0001\u0005\u0001\u0005"+
-		"\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0006\u0001\u0006\u0001\u0006"+
-		"\u0001\u0006\u0001\u0006\u0003\u0006H\b\u0006\u0001\u0007\u0001\u0007"+
-		"\u0003\u0007L\b\u0007\u0001\u0007\u0001\u0007\u0001\b\u0001\b\u0001\b"+
-		"\u0001\b\u0001\b\u0001\t\u0001\t\u0001\t\u0001\t\u0005\tY\b\t\n\t\f\t"+
-		"\\\t\t\u0001\n\u0001\n\u0001\n\u0001\n\u0001\n\u0001\n\u0001\n\u0001\n"+
-		"\u0003\nf\b\n\u0001\u000b\u0001\u000b\u0001\f\u0001\f\u0001\r\u0001\r"+
-		"\u0001\u000e\u0001\u000e\u0001\u000e\u0000\u0000\u000f\u0000\u0002\u0004"+
-		"\u0006\b\n\f\u000e\u0010\u0012\u0014\u0016\u0018\u001a\u001c\u0000\u0006"+
-		"\u0001\u0000\u0005\u0006\u0002\u0000\u001c\u001c\u001f\u001f\u0001\u0000"+
-		"\u0010\u0011\u0001\u0000\u0013\u001a\u0002\u0000\u001d\u001d\u001f \u0002"+
-		"\u0000\u0012\u0012\u001b\u001bh\u0000\u001e\u0001\u0000\u0000\u0000\u0002"+
-		"#\u0001\u0000\u0000\u0000\u0004%\u0001\u0000\u0000\u0000\u0006/\u0001"+
-		"\u0000\u0000\u0000\b7\u0001\u0000\u0000\u0000\n<\u0001\u0000\u0000\u0000"+
-		"\fG\u0001\u0000\u0000\u0000\u000eI\u0001\u0000\u0000\u0000\u0010O\u0001"+
-		"\u0000\u0000\u0000\u0012T\u0001\u0000\u0000\u0000\u0014e\u0001\u0000\u0000"+
-		"\u0000\u0016g\u0001\u0000\u0000\u0000\u0018i\u0001\u0000\u0000\u0000\u001a"+
-		"k\u0001\u0000\u0000\u0000\u001cm\u0001\u0000\u0000\u0000\u001e\u001f\u0003"+
-		"\u0002\u0001\u0000\u001f \u0005\u0000\u0000\u0001 \u0001\u0001\u0000\u0000"+
-		"\u0000!$\u0003\u0012\t\u0000\"$\u0003\u0004\u0002\u0000#!\u0001\u0000"+
-		"\u0000\u0000#\"\u0001\u0000\u0000\u0000$\u0003\u0001\u0000\u0000\u0000"+
-		"%&\u0005\u0001\u0000\u0000&\'\u0003\u0006\u0003\u0000\'(\u0005\u0002\u0000"+
-		"\u0000(*\u0005\u0003\u0000\u0000)+\u0003\n\u0005\u0000*)\u0001\u0000\u0000"+
-		"\u0000*+\u0001\u0000\u0000\u0000+-\u0001\u0000\u0000\u0000,.\u0003\u000e"+
-		"\u0007\u0000-,\u0001\u0000\u0000\u0000-.\u0001\u0000\u0000\u0000.\u0005"+
-		"\u0001\u0000\u0000\u0000/4\u0003\b\u0004\u000001\u0005\u0004\u0000\u0000"+
-		"13\u0003\b\u0004\u000020\u0001\u0000\u0000\u000036\u0001\u0000\u0000\u0000"+
-		"42\u0001\u0000\u0000\u000045\u0001\u0000\u0000\u00005\u0007\u0001\u0000"+
-		"\u0000\u000064\u0001\u0000\u0000\u000078\u0007\u0000\u0000\u000089\u0005"+
-		"\u0007\u0000\u00009:\u0007\u0001\u0000\u0000:;\u0005\b\u0000\u0000;\t"+
-		"\u0001\u0000\u0000\u0000<=\u0005\t\u0000\u0000=>\u0005!\u0000\u0000>?"+
-		"\u0005\n\u0000\u0000?@\u0005\u0002\u0000\u0000@A\u0003\f\u0006\u0000A"+
-		"\u000b\u0001\u0000\u0000\u0000BH\u0005\u000b\u0000\u0000CD\u0005!\u0000"+
-		"\u0000DE\u0005\f\u0000\u0000EF\u0005\r\u0000\u0000FH\u0005\u000b\u0000"+
-		"\u0000GB\u0001\u0000\u0000\u0000GC\u0001\u0000\u0000\u0000H\r\u0001\u0000"+
-		"\u0000\u0000IK\u0005\u000e\u0000\u0000JL\u0003\u0010\b\u0000KJ\u0001\u0000"+
-		"\u0000\u0000KL\u0001\u0000\u0000\u0000LM\u0001\u0000\u0000\u0000MN\u0003"+
-		"\u0012\t\u0000N\u000f\u0001\u0000\u0000\u0000OP\u0005\u001e\u0000\u0000"+
-		"PQ\u0005\u000f\u0000\u0000QR\u0007\u0002\u0000\u0000RS\u0005\u0012\u0000"+
-		"\u0000S\u0011\u0001\u0000\u0000\u0000TZ\u0003\u0014\n\u0000UV\u0003\u001c"+
-		"\u000e\u0000VW\u0003\u0014\n\u0000WY\u0001\u0000\u0000\u0000XU\u0001\u0000"+
-		"\u0000\u0000Y\\\u0001\u0000\u0000\u0000ZX\u0001\u0000\u0000\u0000Z[\u0001"+
-		"\u0000\u0000\u0000[\u0013\u0001\u0000\u0000\u0000\\Z\u0001\u0000\u0000"+
-		"\u0000]^\u0005\u0007\u0000\u0000^_\u0003\u0012\t\u0000_`\u0005\b\u0000"+
-		"\u0000`f\u0001\u0000\u0000\u0000ab\u0003\u0016\u000b\u0000bc\u0003\u0018"+
-		"\f\u0000cd\u0003\u001a\r\u0000df\u0001\u0000\u0000\u0000e]\u0001\u0000"+
-		"\u0000\u0000ea\u0001\u0000\u0000\u0000f\u0015\u0001\u0000\u0000\u0000"+
-		"gh\u0005\u001e\u0000\u0000h\u0017\u0001\u0000\u0000\u0000ij\u0007\u0003"+
-		"\u0000\u0000j\u0019\u0001\u0000\u0000\u0000kl\u0007\u0004\u0000\u0000"+
-		"l\u001b\u0001\u0000\u0000\u0000mn\u0007\u0005\u0000\u0000n\u001d\u0001"+
-		"\u0000\u0000\u0000\b#*-4GKZe";
+		"\f\u0007\f\u0002\r\u0007\r\u0002\u000e\u0007\u000e\u0002\u000f\u0007\u000f"+
+		"\u0002\u0010\u0007\u0010\u0001\u0000\u0001\u0000\u0001\u0000\u0001\u0001"+
+		"\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0003\u0001+\b\u0001"+
+		"\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0003\u0002"+
+		"2\b\u0002\u0001\u0002\u0003\u00025\b\u0002\u0001\u0003\u0001\u0003\u0001"+
+		"\u0003\u0005\u0003:\b\u0003\n\u0003\f\u0003=\t\u0003\u0001\u0004\u0001"+
+		"\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0005\u0001\u0005\u0001"+
+		"\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001"+
+		"\u0007\u0001\u0007\u0001\u0007\u0001\u0007\u0001\u0007\u0003\u0007Q\b"+
+		"\u0007\u0001\b\u0001\b\u0003\bU\b\b\u0001\b\u0001\b\u0001\t\u0001\t\u0001"+
+		"\t\u0001\t\u0001\t\u0001\n\u0001\n\u0001\u000b\u0001\u000b\u0001\u000b"+
+		"\u0001\u000b\u0005\u000bd\b\u000b\n\u000b\f\u000bg\t\u000b\u0001\f\u0001"+
+		"\f\u0001\f\u0001\f\u0001\f\u0001\f\u0001\f\u0001\f\u0003\fq\b\f\u0001"+
+		"\r\u0001\r\u0001\u000e\u0001\u000e\u0001\u000f\u0001\u000f\u0001\u0010"+
+		"\u0001\u0010\u0001\u0010\u0000\u0000\u0011\u0000\u0002\u0004\u0006\b\n"+
+		"\f\u000e\u0010\u0012\u0014\u0016\u0018\u001a\u001c\u001e \u0000\u0006"+
+		"\u0002\u0000\u001a\u001a\u001e\u001e\u0001\u0000\n\u000b\u0001\u0000\u000f"+
+		"\u0010\u0002\u0000\f\r\u0011\u0016\u0002\u0000\u001c\u001c\u001e\u001f"+
+		"\u0001\u0000\u0005\u0006r\u0000\"\u0001\u0000\u0000\u0000\u0002*\u0001"+
+		"\u0000\u0000\u0000\u0004,\u0001\u0000\u0000\u0000\u00066\u0001\u0000\u0000"+
+		"\u0000\b>\u0001\u0000\u0000\u0000\nC\u0001\u0000\u0000\u0000\fE\u0001"+
+		"\u0000\u0000\u0000\u000eP\u0001\u0000\u0000\u0000\u0010R\u0001\u0000\u0000"+
+		"\u0000\u0012X\u0001\u0000\u0000\u0000\u0014]\u0001\u0000\u0000\u0000\u0016"+
+		"_\u0001\u0000\u0000\u0000\u0018p\u0001\u0000\u0000\u0000\u001ar\u0001"+
+		"\u0000\u0000\u0000\u001ct\u0001\u0000\u0000\u0000\u001ev\u0001\u0000\u0000"+
+		"\u0000 x\u0001\u0000\u0000\u0000\"#\u0003\u0002\u0001\u0000#$\u0005\u0000"+
+		"\u0000\u0001$\u0001\u0001\u0000\u0000\u0000%+\u0003\u0016\u000b\u0000"+
+		"&\'\u0003\u0012\t\u0000\'(\u0003\u0016\u000b\u0000(+\u0001\u0000\u0000"+
+		"\u0000)+\u0003\u0004\u0002\u0000*%\u0001\u0000\u0000\u0000*&\u0001\u0000"+
+		"\u0000\u0000*)\u0001\u0000\u0000\u0000+\u0003\u0001\u0000\u0000\u0000"+
+		",-\u0005\u0001\u0000\u0000-.\u0003\u0006\u0003\u0000./\u0005\u0002\u0000"+
+		"\u0000/1\u0005\u0003\u0000\u000002\u0003\f\u0006\u000010\u0001\u0000\u0000"+
+		"\u000012\u0001\u0000\u0000\u000024\u0001\u0000\u0000\u000035\u0003\u0010"+
+		"\b\u000043\u0001\u0000\u0000\u000045\u0001\u0000\u0000\u00005\u0005\u0001"+
+		"\u0000\u0000\u00006;\u0003\b\u0004\u000078\u0005\u0019\u0000\u00008:\u0003"+
+		"\b\u0004\u000097\u0001\u0000\u0000\u0000:=\u0001\u0000\u0000\u0000;9\u0001"+
+		"\u0000\u0000\u0000;<\u0001\u0000\u0000\u0000<\u0007\u0001\u0000\u0000"+
+		"\u0000=;\u0001\u0000\u0000\u0000>?\u0003\n\u0005\u0000?@\u0005\u0017\u0000"+
+		"\u0000@A\u0007\u0000\u0000\u0000AB\u0005\u0018\u0000\u0000B\t\u0001\u0000"+
+		"\u0000\u0000CD\u0007\u0001\u0000\u0000D\u000b\u0001\u0000\u0000\u0000"+
+		"EF\u0005\b\u0000\u0000FG\u0005 \u0000\u0000GH\u0005\u001b\u0000\u0000"+
+		"HI\u0005\u0002\u0000\u0000IJ\u0003\u000e\u0007\u0000J\r\u0001\u0000\u0000"+
+		"\u0000KQ\u0005\u000e\u0000\u0000LM\u0005 \u0000\u0000MN\u0005\u001b\u0000"+
+		"\u0000NO\u0005\t\u0000\u0000OQ\u0005\u000e\u0000\u0000PK\u0001\u0000\u0000"+
+		"\u0000PL\u0001\u0000\u0000\u0000Q\u000f\u0001\u0000\u0000\u0000RT\u0005"+
+		"\u0004\u0000\u0000SU\u0003\u0012\t\u0000TS\u0001\u0000\u0000\u0000TU\u0001"+
+		"\u0000\u0000\u0000UV\u0001\u0000\u0000\u0000VW\u0003\u0016\u000b\u0000"+
+		"W\u0011\u0001\u0000\u0000\u0000XY\u0005\u001d\u0000\u0000YZ\u0005\u0007"+
+		"\u0000\u0000Z[\u0003\u0014\n\u0000[\\\u0005\u0005\u0000\u0000\\\u0013"+
+		"\u0001\u0000\u0000\u0000]^\u0007\u0002\u0000\u0000^\u0015\u0001\u0000"+
+		"\u0000\u0000_e\u0003\u0018\f\u0000`a\u0003 \u0010\u0000ab\u0003\u0018"+
+		"\f\u0000bd\u0001\u0000\u0000\u0000c`\u0001\u0000\u0000\u0000dg\u0001\u0000"+
+		"\u0000\u0000ec\u0001\u0000\u0000\u0000ef\u0001\u0000\u0000\u0000f\u0017"+
+		"\u0001\u0000\u0000\u0000ge\u0001\u0000\u0000\u0000hi\u0005\u0017\u0000"+
+		"\u0000ij\u0003\u0016\u000b\u0000jk\u0005\u0018\u0000\u0000kq\u0001\u0000"+
+		"\u0000\u0000lm\u0003\u001a\r\u0000mn\u0003\u001c\u000e\u0000no\u0003\u001e"+
+		"\u000f\u0000oq\u0001\u0000\u0000\u0000ph\u0001\u0000\u0000\u0000pl\u0001"+
+		"\u0000\u0000\u0000q\u0019\u0001\u0000\u0000\u0000rs\u0005\u001d\u0000"+
+		"\u0000s\u001b\u0001\u0000\u0000\u0000tu\u0007\u0003\u0000\u0000u\u001d"+
+		"\u0001\u0000\u0000\u0000vw\u0007\u0004\u0000\u0000w\u001f\u0001\u0000"+
+		"\u0000\u0000xy\u0007\u0005\u0000\u0000y!\u0001\u0000\u0000\u0000\b*14"+
+		";PTep";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
