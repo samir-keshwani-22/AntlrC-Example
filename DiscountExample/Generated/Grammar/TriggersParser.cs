@@ -36,10 +36,10 @@ public partial class TriggersParser : Parser {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
-		SOURCE_TOKEN=1, DEST_TOKEN=2, VALUEIDENTIFIER=3, QUERY=4, LPAREN=5, FROM=6, 
-		DATA=7, STAR=8, COUNT=9, RPAREN=10, WHERE=11, EQ=12, COMMA=13, NE=14, 
-		IN=15, NOT_IN=16, GT=17, LT=18, GE=19, IS=20, LE=21, AND=22, EMPTY=23, 
-		OR=24, ACCOUNT=25, IDENTIFIER=26, DATE=27, WS=28, INVALID=29;
+		SOURCE_TOKEN=1, DEST_TOKEN=2, QUERY=3, LPAREN=4, FROM=5, DATA=6, STAR=7, 
+		COUNT=8, RPAREN=9, WHERE=10, EQ=11, COMMA=12, NE=13, IN=14, NOT_IN=15, 
+		GT=16, LT=17, GE=18, IS=19, LE=20, AND=21, EMPTY=22, OR=23, ACCOUNT=24, 
+		IDENTIFIER=25, VALUEIDENTIFIER=26, DATE=27, WS=28, INVALID=29;
 	public const int
 		RULE_start = 0, RULE_trigger = 1, RULE_aggregateTrigger = 2, RULE_aggregateList = 3, 
 		RULE_aggregate = 4, RULE_aggregateFunction = 5, RULE_preExpression = 6, 
@@ -52,15 +52,15 @@ public partial class TriggersParser : Parser {
 	};
 
 	private static readonly string[] _LiteralNames = {
-		null, "'{source}'", "'{dest}'", null, "'QUERY'", "'('", "'FROM'", "'DATA'", 
+		null, "'{source}'", "'{dest}'", "'QUERY'", "'('", "'FROM'", "'DATA'", 
 		"'*'", "'COUNT'", "')'", "'WHERE'", "'='", "','", "'!='", "'in'", null, 
 		"'>'", "'<'", "'>='", "'is'", "'<='", "'AND'", null, "'OR'", "'#{account}'"
 	};
 	private static readonly string[] _SymbolicNames = {
-		null, "SOURCE_TOKEN", "DEST_TOKEN", "VALUEIDENTIFIER", "QUERY", "LPAREN", 
-		"FROM", "DATA", "STAR", "COUNT", "RPAREN", "WHERE", "EQ", "COMMA", "NE", 
-		"IN", "NOT_IN", "GT", "LT", "GE", "IS", "LE", "AND", "EMPTY", "OR", "ACCOUNT", 
-		"IDENTIFIER", "DATE", "WS", "INVALID"
+		null, "SOURCE_TOKEN", "DEST_TOKEN", "QUERY", "LPAREN", "FROM", "DATA", 
+		"STAR", "COUNT", "RPAREN", "WHERE", "EQ", "COMMA", "NE", "IN", "NOT_IN", 
+		"GT", "LT", "GE", "IS", "LE", "AND", "EMPTY", "OR", "ACCOUNT", "IDENTIFIER", 
+		"VALUEIDENTIFIER", "DATE", "WS", "INVALID"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -840,7 +840,7 @@ public partial class TriggersParser : Parser {
 			{
 			State = 94;
 			_la = TokenStream.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 3133440L) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 1566720L) != 0)) ) {
 			ErrorHandler.RecoverInline(this);
 			}
 			else {
@@ -863,7 +863,6 @@ public partial class TriggersParser : Parser {
 	public partial class ValueContext : ParserRuleContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VALUEIDENTIFIER() { return GetToken(TriggersParser.VALUEIDENTIFIER, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATE() { return GetToken(TriggersParser.DATE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EMPTY() { return GetToken(TriggersParser.EMPTY, 0); }
 		public ValueContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -897,7 +896,7 @@ public partial class TriggersParser : Parser {
 			{
 			State = 96;
 			_la = TokenStream.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 142606344L) != 0)) ) {
+			if ( !(_la==VALUEIDENTIFIER || _la==DATE) ) {
 			ErrorHandler.RecoverInline(this);
 			}
 			else {
@@ -981,26 +980,26 @@ public partial class TriggersParser : Parser {
 		1,4,1,5,1,5,1,6,1,6,1,6,1,6,1,6,1,7,1,7,1,8,1,8,1,8,1,8,5,8,78,8,8,10,
 		8,12,8,81,9,8,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,3,9,91,8,9,1,10,1,10,1,11,
 		1,11,1,12,1,12,1,13,1,13,1,13,0,0,14,0,2,4,6,8,10,12,14,16,18,20,22,24,
-		26,0,4,1,0,1,2,3,0,12,12,14,19,21,21,3,0,3,3,23,23,27,27,2,0,22,22,24,
-		24,92,0,28,1,0,0,0,2,44,1,0,0,0,4,46,1,0,0,0,6,51,1,0,0,0,8,59,1,0,0,0,
-		10,64,1,0,0,0,12,66,1,0,0,0,14,71,1,0,0,0,16,73,1,0,0,0,18,90,1,0,0,0,
-		20,92,1,0,0,0,22,94,1,0,0,0,24,96,1,0,0,0,26,98,1,0,0,0,28,29,3,2,1,0,
-		29,30,5,0,0,1,30,1,1,0,0,0,31,45,3,16,8,0,32,33,3,12,6,0,33,34,3,16,8,
-		0,34,45,1,0,0,0,35,36,3,4,2,0,36,37,5,11,0,0,37,38,3,16,8,0,38,45,1,0,
-		0,0,39,40,3,4,2,0,40,41,5,11,0,0,41,42,3,12,6,0,42,43,3,16,8,0,43,45,1,
-		0,0,0,44,31,1,0,0,0,44,32,1,0,0,0,44,35,1,0,0,0,44,39,1,0,0,0,45,3,1,0,
-		0,0,46,47,5,4,0,0,47,48,3,6,3,0,48,49,5,6,0,0,49,50,5,7,0,0,50,5,1,0,0,
-		0,51,56,3,8,4,0,52,53,5,13,0,0,53,55,3,8,4,0,54,52,1,0,0,0,55,58,1,0,0,
-		0,56,54,1,0,0,0,56,57,1,0,0,0,57,7,1,0,0,0,58,56,1,0,0,0,59,60,3,10,5,
-		0,60,61,5,5,0,0,61,62,5,8,0,0,62,63,5,10,0,0,63,9,1,0,0,0,64,65,5,9,0,
-		0,65,11,1,0,0,0,66,67,5,25,0,0,67,68,5,20,0,0,68,69,3,14,7,0,69,70,5,22,
-		0,0,70,13,1,0,0,0,71,72,7,0,0,0,72,15,1,0,0,0,73,79,3,18,9,0,74,75,3,26,
-		13,0,75,76,3,18,9,0,76,78,1,0,0,0,77,74,1,0,0,0,78,81,1,0,0,0,79,77,1,
-		0,0,0,79,80,1,0,0,0,80,17,1,0,0,0,81,79,1,0,0,0,82,83,5,5,0,0,83,84,3,
-		16,8,0,84,85,5,10,0,0,85,91,1,0,0,0,86,87,3,20,10,0,87,88,3,22,11,0,88,
-		89,3,24,12,0,89,91,1,0,0,0,90,82,1,0,0,0,90,86,1,0,0,0,91,19,1,0,0,0,92,
-		93,5,26,0,0,93,21,1,0,0,0,94,95,7,1,0,0,95,23,1,0,0,0,96,97,7,2,0,0,97,
-		25,1,0,0,0,98,99,7,3,0,0,99,27,1,0,0,0,4,44,56,79,90
+		26,0,4,1,0,1,2,3,0,11,11,13,18,20,20,1,0,26,27,2,0,21,21,23,23,92,0,28,
+		1,0,0,0,2,44,1,0,0,0,4,46,1,0,0,0,6,51,1,0,0,0,8,59,1,0,0,0,10,64,1,0,
+		0,0,12,66,1,0,0,0,14,71,1,0,0,0,16,73,1,0,0,0,18,90,1,0,0,0,20,92,1,0,
+		0,0,22,94,1,0,0,0,24,96,1,0,0,0,26,98,1,0,0,0,28,29,3,2,1,0,29,30,5,0,
+		0,1,30,1,1,0,0,0,31,45,3,16,8,0,32,33,3,12,6,0,33,34,3,16,8,0,34,45,1,
+		0,0,0,35,36,3,4,2,0,36,37,5,10,0,0,37,38,3,16,8,0,38,45,1,0,0,0,39,40,
+		3,4,2,0,40,41,5,10,0,0,41,42,3,12,6,0,42,43,3,16,8,0,43,45,1,0,0,0,44,
+		31,1,0,0,0,44,32,1,0,0,0,44,35,1,0,0,0,44,39,1,0,0,0,45,3,1,0,0,0,46,47,
+		5,3,0,0,47,48,3,6,3,0,48,49,5,5,0,0,49,50,5,6,0,0,50,5,1,0,0,0,51,56,3,
+		8,4,0,52,53,5,12,0,0,53,55,3,8,4,0,54,52,1,0,0,0,55,58,1,0,0,0,56,54,1,
+		0,0,0,56,57,1,0,0,0,57,7,1,0,0,0,58,56,1,0,0,0,59,60,3,10,5,0,60,61,5,
+		4,0,0,61,62,5,7,0,0,62,63,5,9,0,0,63,9,1,0,0,0,64,65,5,8,0,0,65,11,1,0,
+		0,0,66,67,5,24,0,0,67,68,5,19,0,0,68,69,3,14,7,0,69,70,5,21,0,0,70,13,
+		1,0,0,0,71,72,7,0,0,0,72,15,1,0,0,0,73,79,3,18,9,0,74,75,3,26,13,0,75,
+		76,3,18,9,0,76,78,1,0,0,0,77,74,1,0,0,0,78,81,1,0,0,0,79,77,1,0,0,0,79,
+		80,1,0,0,0,80,17,1,0,0,0,81,79,1,0,0,0,82,83,5,4,0,0,83,84,3,16,8,0,84,
+		85,5,9,0,0,85,91,1,0,0,0,86,87,3,20,10,0,87,88,3,22,11,0,88,89,3,24,12,
+		0,89,91,1,0,0,0,90,82,1,0,0,0,90,86,1,0,0,0,91,19,1,0,0,0,92,93,5,25,0,
+		0,93,21,1,0,0,0,94,95,7,1,0,0,95,23,1,0,0,0,96,97,7,2,0,0,97,25,1,0,0,
+		0,98,99,7,3,0,0,99,27,1,0,0,0,4,44,56,79,90
 	};
 
 	public static readonly ATN _ATN =

@@ -19,13 +19,14 @@ math_term:
 	| NUMBER;
 
 operator: '=' | '!=' | '>' | '<' | '>=' | '<=';
+
 logical_operator: 'AND' | 'OR';
+
 math_operator: '+' | '-' | '/' | '*';
- 
+
 IDENTIFIER: 'Q' [0-9]+ '_' ('count' | 'sum');
- 
+
 NUMBER: [0-9]+ ('.' [0-9]+)?;
 
 WS: [ \t\r\n]+ -> skip;
-
-INVALID: . ;
+INVALID: .;

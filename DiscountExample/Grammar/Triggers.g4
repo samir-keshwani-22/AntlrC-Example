@@ -29,11 +29,12 @@ expression: term (logicalOperator term)*;
 term: LPAREN expression RPAREN | field operator value;
 
 field: IDENTIFIER;
-operator: EQ | NE | GT | LT | GE | LE | IN | NOT_IN;
-value: VALUEIDENTIFIER | DATE | EMPTY;
-VALUEIDENTIFIER: '{' VALUE_CHAR+ '}';
-logicalOperator: AND | OR;
 
+operator: EQ | NE | GT | LT | GE | LE | IN | NOT_IN;
+
+value: VALUEIDENTIFIER | DATE;
+
+logicalOperator: AND | OR;
 
 QUERY: 'QUERY';
 LPAREN: '(';
@@ -54,16 +55,23 @@ GE: '>=';
 IS: 'is';
 LE: '<=';
 AND: 'AND';
+
 EMPTY: '{' WS* '}';
+
 OR: 'OR';
+
 ACCOUNT: '#{account}';
+
 IDENTIFIER: '#{' IDENTIFIER_CHAR+ '}';
+
+VALUEIDENTIFIER: '{' VALUE_CHAR* '}';
+
 DATE:
 	'{' DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT '}';
 
 fragment DIGIT: [0-9];
-fragment IDENTIFIER_CHAR: [a-zA-Z_] [a-zA-Z0-9_,.]*;
-fragment VALUE_CHAR: ~[{}];
+fragment IDENTIFIER_CHAR: [a-zA-Z0-9_,.];
+fragment VALUE_CHAR: ['"\\@()a-zA-Z0-9:_,.];
 
 WS: [ \t\r\n]+ -> skip;
 INVALID: .;

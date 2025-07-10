@@ -16,10 +16,10 @@ public class TriggersParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		SOURCE_TOKEN=1, DEST_TOKEN=2, VALUEIDENTIFIER=3, QUERY=4, LPAREN=5, FROM=6, 
-		DATA=7, STAR=8, COUNT=9, RPAREN=10, WHERE=11, EQ=12, COMMA=13, NE=14, 
-		IN=15, NOT_IN=16, GT=17, LT=18, GE=19, IS=20, LE=21, AND=22, EMPTY=23, 
-		OR=24, ACCOUNT=25, IDENTIFIER=26, DATE=27, WS=28, INVALID=29;
+		SOURCE_TOKEN=1, DEST_TOKEN=2, QUERY=3, LPAREN=4, FROM=5, DATA=6, STAR=7, 
+		COUNT=8, RPAREN=9, WHERE=10, EQ=11, COMMA=12, NE=13, IN=14, NOT_IN=15, 
+		GT=16, LT=17, GE=18, IS=19, LE=20, AND=21, EMPTY=22, OR=23, ACCOUNT=24, 
+		IDENTIFIER=25, VALUEIDENTIFIER=26, DATE=27, WS=28, INVALID=29;
 	public static final int
 		RULE_start = 0, RULE_trigger = 1, RULE_aggregateTrigger = 2, RULE_aggregateList = 3, 
 		RULE_aggregate = 4, RULE_aggregateFunction = 5, RULE_preExpression = 6, 
@@ -36,7 +36,7 @@ public class TriggersParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'{source}'", "'{dest}'", null, "'QUERY'", "'('", "'FROM'", "'DATA'", 
+			null, "'{source}'", "'{dest}'", "'QUERY'", "'('", "'FROM'", "'DATA'", 
 			"'*'", "'COUNT'", "')'", "'WHERE'", "'='", "','", "'!='", "'in'", null, 
 			"'>'", "'<'", "'>='", "'is'", "'<='", "'AND'", null, "'OR'", "'#{account}'"
 		};
@@ -44,10 +44,10 @@ public class TriggersParser extends Parser {
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "SOURCE_TOKEN", "DEST_TOKEN", "VALUEIDENTIFIER", "QUERY", "LPAREN", 
-			"FROM", "DATA", "STAR", "COUNT", "RPAREN", "WHERE", "EQ", "COMMA", "NE", 
-			"IN", "NOT_IN", "GT", "LT", "GE", "IS", "LE", "AND", "EMPTY", "OR", "ACCOUNT", 
-			"IDENTIFIER", "DATE", "WS", "INVALID"
+			null, "SOURCE_TOKEN", "DEST_TOKEN", "QUERY", "LPAREN", "FROM", "DATA", 
+			"STAR", "COUNT", "RPAREN", "WHERE", "EQ", "COMMA", "NE", "IN", "NOT_IN", 
+			"GT", "LT", "GE", "IS", "LE", "AND", "EMPTY", "OR", "ACCOUNT", "IDENTIFIER", 
+			"VALUEIDENTIFIER", "DATE", "WS", "INVALID"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -644,7 +644,7 @@ public class TriggersParser extends Parser {
 			{
 			setState(94);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 3133440L) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 1566720L) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -669,7 +669,6 @@ public class TriggersParser extends Parser {
 	public static class ValueContext extends ParserRuleContext {
 		public TerminalNode VALUEIDENTIFIER() { return getToken(TriggersParser.VALUEIDENTIFIER, 0); }
 		public TerminalNode DATE() { return getToken(TriggersParser.DATE, 0); }
-		public TerminalNode EMPTY() { return getToken(TriggersParser.EMPTY, 0); }
 		public ValueContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -685,7 +684,7 @@ public class TriggersParser extends Parser {
 			{
 			setState(96);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 142606344L) != 0)) ) {
+			if ( !(_la==VALUEIDENTIFIER || _la==DATE) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -763,44 +762,43 @@ public class TriggersParser extends Parser {
 		"\t\u0001\t\u0001\t\u0001\t\u0003\t[\b\t\u0001\n\u0001\n\u0001\u000b\u0001"+
 		"\u000b\u0001\f\u0001\f\u0001\r\u0001\r\u0001\r\u0000\u0000\u000e\u0000"+
 		"\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014\u0016\u0018\u001a\u0000"+
-		"\u0004\u0001\u0000\u0001\u0002\u0003\u0000\f\f\u000e\u0013\u0015\u0015"+
-		"\u0003\u0000\u0003\u0003\u0017\u0017\u001b\u001b\u0002\u0000\u0016\u0016"+
-		"\u0018\u0018\\\u0000\u001c\u0001\u0000\u0000\u0000\u0002,\u0001\u0000"+
-		"\u0000\u0000\u0004.\u0001\u0000\u0000\u0000\u00063\u0001\u0000\u0000\u0000"+
-		"\b;\u0001\u0000\u0000\u0000\n@\u0001\u0000\u0000\u0000\fB\u0001\u0000"+
-		"\u0000\u0000\u000eG\u0001\u0000\u0000\u0000\u0010I\u0001\u0000\u0000\u0000"+
-		"\u0012Z\u0001\u0000\u0000\u0000\u0014\\\u0001\u0000\u0000\u0000\u0016"+
-		"^\u0001\u0000\u0000\u0000\u0018`\u0001\u0000\u0000\u0000\u001ab\u0001"+
-		"\u0000\u0000\u0000\u001c\u001d\u0003\u0002\u0001\u0000\u001d\u001e\u0005"+
-		"\u0000\u0000\u0001\u001e\u0001\u0001\u0000\u0000\u0000\u001f-\u0003\u0010"+
-		"\b\u0000 !\u0003\f\u0006\u0000!\"\u0003\u0010\b\u0000\"-\u0001\u0000\u0000"+
-		"\u0000#$\u0003\u0004\u0002\u0000$%\u0005\u000b\u0000\u0000%&\u0003\u0010"+
-		"\b\u0000&-\u0001\u0000\u0000\u0000\'(\u0003\u0004\u0002\u0000()\u0005"+
-		"\u000b\u0000\u0000)*\u0003\f\u0006\u0000*+\u0003\u0010\b\u0000+-\u0001"+
-		"\u0000\u0000\u0000,\u001f\u0001\u0000\u0000\u0000, \u0001\u0000\u0000"+
-		"\u0000,#\u0001\u0000\u0000\u0000,\'\u0001\u0000\u0000\u0000-\u0003\u0001"+
-		"\u0000\u0000\u0000./\u0005\u0004\u0000\u0000/0\u0003\u0006\u0003\u0000"+
-		"01\u0005\u0006\u0000\u000012\u0005\u0007\u0000\u00002\u0005\u0001\u0000"+
-		"\u0000\u000038\u0003\b\u0004\u000045\u0005\r\u0000\u000057\u0003\b\u0004"+
-		"\u000064\u0001\u0000\u0000\u00007:\u0001\u0000\u0000\u000086\u0001\u0000"+
-		"\u0000\u000089\u0001\u0000\u0000\u00009\u0007\u0001\u0000\u0000\u0000"+
-		":8\u0001\u0000\u0000\u0000;<\u0003\n\u0005\u0000<=\u0005\u0005\u0000\u0000"+
-		"=>\u0005\b\u0000\u0000>?\u0005\n\u0000\u0000?\t\u0001\u0000\u0000\u0000"+
-		"@A\u0005\t\u0000\u0000A\u000b\u0001\u0000\u0000\u0000BC\u0005\u0019\u0000"+
-		"\u0000CD\u0005\u0014\u0000\u0000DE\u0003\u000e\u0007\u0000EF\u0005\u0016"+
-		"\u0000\u0000F\r\u0001\u0000\u0000\u0000GH\u0007\u0000\u0000\u0000H\u000f"+
-		"\u0001\u0000\u0000\u0000IO\u0003\u0012\t\u0000JK\u0003\u001a\r\u0000K"+
-		"L\u0003\u0012\t\u0000LN\u0001\u0000\u0000\u0000MJ\u0001\u0000\u0000\u0000"+
-		"NQ\u0001\u0000\u0000\u0000OM\u0001\u0000\u0000\u0000OP\u0001\u0000\u0000"+
-		"\u0000P\u0011\u0001\u0000\u0000\u0000QO\u0001\u0000\u0000\u0000RS\u0005"+
-		"\u0005\u0000\u0000ST\u0003\u0010\b\u0000TU\u0005\n\u0000\u0000U[\u0001"+
-		"\u0000\u0000\u0000VW\u0003\u0014\n\u0000WX\u0003\u0016\u000b\u0000XY\u0003"+
-		"\u0018\f\u0000Y[\u0001\u0000\u0000\u0000ZR\u0001\u0000\u0000\u0000ZV\u0001"+
-		"\u0000\u0000\u0000[\u0013\u0001\u0000\u0000\u0000\\]\u0005\u001a\u0000"+
-		"\u0000]\u0015\u0001\u0000\u0000\u0000^_\u0007\u0001\u0000\u0000_\u0017"+
-		"\u0001\u0000\u0000\u0000`a\u0007\u0002\u0000\u0000a\u0019\u0001\u0000"+
-		"\u0000\u0000bc\u0007\u0003\u0000\u0000c\u001b\u0001\u0000\u0000\u0000"+
-		"\u0004,8OZ";
+		"\u0004\u0001\u0000\u0001\u0002\u0003\u0000\u000b\u000b\r\u0012\u0014\u0014"+
+		"\u0001\u0000\u001a\u001b\u0002\u0000\u0015\u0015\u0017\u0017\\\u0000\u001c"+
+		"\u0001\u0000\u0000\u0000\u0002,\u0001\u0000\u0000\u0000\u0004.\u0001\u0000"+
+		"\u0000\u0000\u00063\u0001\u0000\u0000\u0000\b;\u0001\u0000\u0000\u0000"+
+		"\n@\u0001\u0000\u0000\u0000\fB\u0001\u0000\u0000\u0000\u000eG\u0001\u0000"+
+		"\u0000\u0000\u0010I\u0001\u0000\u0000\u0000\u0012Z\u0001\u0000\u0000\u0000"+
+		"\u0014\\\u0001\u0000\u0000\u0000\u0016^\u0001\u0000\u0000\u0000\u0018"+
+		"`\u0001\u0000\u0000\u0000\u001ab\u0001\u0000\u0000\u0000\u001c\u001d\u0003"+
+		"\u0002\u0001\u0000\u001d\u001e\u0005\u0000\u0000\u0001\u001e\u0001\u0001"+
+		"\u0000\u0000\u0000\u001f-\u0003\u0010\b\u0000 !\u0003\f\u0006\u0000!\""+
+		"\u0003\u0010\b\u0000\"-\u0001\u0000\u0000\u0000#$\u0003\u0004\u0002\u0000"+
+		"$%\u0005\n\u0000\u0000%&\u0003\u0010\b\u0000&-\u0001\u0000\u0000\u0000"+
+		"\'(\u0003\u0004\u0002\u0000()\u0005\n\u0000\u0000)*\u0003\f\u0006\u0000"+
+		"*+\u0003\u0010\b\u0000+-\u0001\u0000\u0000\u0000,\u001f\u0001\u0000\u0000"+
+		"\u0000, \u0001\u0000\u0000\u0000,#\u0001\u0000\u0000\u0000,\'\u0001\u0000"+
+		"\u0000\u0000-\u0003\u0001\u0000\u0000\u0000./\u0005\u0003\u0000\u0000"+
+		"/0\u0003\u0006\u0003\u000001\u0005\u0005\u0000\u000012\u0005\u0006\u0000"+
+		"\u00002\u0005\u0001\u0000\u0000\u000038\u0003\b\u0004\u000045\u0005\f"+
+		"\u0000\u000057\u0003\b\u0004\u000064\u0001\u0000\u0000\u00007:\u0001\u0000"+
+		"\u0000\u000086\u0001\u0000\u0000\u000089\u0001\u0000\u0000\u00009\u0007"+
+		"\u0001\u0000\u0000\u0000:8\u0001\u0000\u0000\u0000;<\u0003\n\u0005\u0000"+
+		"<=\u0005\u0004\u0000\u0000=>\u0005\u0007\u0000\u0000>?\u0005\t\u0000\u0000"+
+		"?\t\u0001\u0000\u0000\u0000@A\u0005\b\u0000\u0000A\u000b\u0001\u0000\u0000"+
+		"\u0000BC\u0005\u0018\u0000\u0000CD\u0005\u0013\u0000\u0000DE\u0003\u000e"+
+		"\u0007\u0000EF\u0005\u0015\u0000\u0000F\r\u0001\u0000\u0000\u0000GH\u0007"+
+		"\u0000\u0000\u0000H\u000f\u0001\u0000\u0000\u0000IO\u0003\u0012\t\u0000"+
+		"JK\u0003\u001a\r\u0000KL\u0003\u0012\t\u0000LN\u0001\u0000\u0000\u0000"+
+		"MJ\u0001\u0000\u0000\u0000NQ\u0001\u0000\u0000\u0000OM\u0001\u0000\u0000"+
+		"\u0000OP\u0001\u0000\u0000\u0000P\u0011\u0001\u0000\u0000\u0000QO\u0001"+
+		"\u0000\u0000\u0000RS\u0005\u0004\u0000\u0000ST\u0003\u0010\b\u0000TU\u0005"+
+		"\t\u0000\u0000U[\u0001\u0000\u0000\u0000VW\u0003\u0014\n\u0000WX\u0003"+
+		"\u0016\u000b\u0000XY\u0003\u0018\f\u0000Y[\u0001\u0000\u0000\u0000ZR\u0001"+
+		"\u0000\u0000\u0000ZV\u0001\u0000\u0000\u0000[\u0013\u0001\u0000\u0000"+
+		"\u0000\\]\u0005\u0019\u0000\u0000]\u0015\u0001\u0000\u0000\u0000^_\u0007"+
+		"\u0001\u0000\u0000_\u0017\u0001\u0000\u0000\u0000`a\u0007\u0002\u0000"+
+		"\u0000a\u0019\u0001\u0000\u0000\u0000bc\u0007\u0003\u0000\u0000c\u001b"+
+		"\u0001\u0000\u0000\u0000\u0004,8OZ";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
